@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_startGameFragment"
             app:destination="@id/startGameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rulesFragment"
+            app:destination="@id/rulesFragment" />
     </fragment>
     <fragment
         android:id="@+id/newGameFragment"
@@ -48,4 +51,9 @@
         android:id="@+id/finishGameFragment"
         android:name="com.vladshtuka.explainer.presentation.screen_finish_game.FinishGameFragment"
         android:label="FinishGameFragment" />
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.vladshtuka.explainer.presentation.screen_rules.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" />
 </navigation>

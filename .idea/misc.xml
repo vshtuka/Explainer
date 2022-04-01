@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/rounded_button.xml" value="0.2215" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/rounded_image.xml" value="0.2215" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/activity_main.xml" value="0.286231884057971" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_finish_game.xml" value="0.32472826086956524" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_game.xml" value="0.286231884057971" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_new_game.xml" value="0.286231884057971" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_start_game.xml" value="0.286231884057971" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/switch_item.xml" value="0.15729166666666666" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/menu/app_bar_menu.xml" value="0.15729166666666666" />
       </map>
     </option>
   </component>
