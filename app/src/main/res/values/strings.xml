@@ -4,5 +4,11 @@
     <string name="rules">Rules</string>
     <string name="new_game">New game</string>
     <string name="continue_game">Continue</string>
-
+    <string name="rules_introduction">Explainer is an educational team word game in which player needs to explain and team should guess as many words as possible over a period of time.\n\n For each correct word team gets a point. The team with the highest number of points wins.\n\n When player explains he cannot use cognate words, translate into another language and explicitly show words with gestures.</string>
+    <string name="points_title">Scoring</string>
+    <string name="points_text">- Team gets 1 point for every guessed word. When word skips, point minuses.\n\n- If team has not enough time to guess last word, team gets 0 points.</string>
+    <string name="winner_title">Winner</string>
+    <string name="winner_text">Game keeps before one of team get enough points to win. If in the moment round finishing teams has the same points, additional round starts.</string>
+    <string name="controversial_points_title">Controversial points</string>
+    <string name="controversial_points_text">If the controversial points happened, for example using of implicit cognate word - you can redact result after time ends. Use option "take away the word" to count 0 team points.</string>
 </resources>
