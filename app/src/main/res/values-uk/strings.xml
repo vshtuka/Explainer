@@ -11,4 +11,18 @@
     <string name="winner_text">Гра продовжується до тих пір, поки одна з команд не набере необхідну для перемоги кількість балів. Якщо на момент завершення чергового раунду в команд виявляється рівна кількість балів - проводиться додатковий раунд.</string>
     <string name="controversial_points_title">Спірні моменти</string>
     <string name="controversial_points_text">Якщо у грі відбувся спірний момент, наприклад, було використане неявне спільнокореневе слово - по закінченню часу існує можливість відредагувати результату раунду. Використовуючи опцію "зняти слово" команді буде нараховано 0 балів.</string>
+    <string name="dictionary_title">Словник</string>
+    <string name="select_dictionary">Виберіть словник</string>
+    <string name="team_title">Команди</string>
+    <string name="add_team">Додати</string>
+    <string name="team_name">Назва команди</string>
+    <string name="settings">Налаштування</string>
+    <string name="round_duration">Тривалість раунду</string>
+    <string name="plus_1_min">+1 хв</string>
+    <string name="minus_1_min">-1 хв</string>
+    <string name="minute">хв</string>
+    <string name="one">1</string>
+    <string name="start_game">Почати гру</string>
+    <string name="play_next">Наступними грають</string>
+    <string name="team">Команда</string>
 </resources>

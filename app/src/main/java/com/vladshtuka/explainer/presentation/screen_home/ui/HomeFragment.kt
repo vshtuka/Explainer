@@ -1,4 +1,4 @@
-package com.vladshtuka.explainer.presentation.screen_home
+package com.vladshtuka.explainer.presentation.screen_home.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,13 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.vladshtuka.explainer.R
 import com.vladshtuka.explainer.databinding.FragmentHomeBinding
+import com.vladshtuka.explainer.presentation.screen_home.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +43,7 @@ class HomeFragment : Fragment() {
 
     private fun setNewGameButton() {
         binding.homePageNewGameButton.setOnClickListener {
+            viewModel.removeDictionary()
             this.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToNewGameFragment())
         }

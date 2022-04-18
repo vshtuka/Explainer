@@ -3,16 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/arrow_forward.xml" value="0.1705" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/dictionary_item_background.xml" value="0.2215" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/dictionary_logo.xml" value="0.1705" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/rectangle_tab.xml" value="0.2215" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/rounded_button.xml" value="0.2215" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/rounded_image.xml" value="0.2215" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/rounded_tab.xml" value="0.2215" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/drawable/start_game_button.xml" value="0.2085" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/activity_main.xml" value="0.286231884057971" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/dictionary_item.xml" value="0.22" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_dictionary_dialog.xml" value="0.25" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_dictionary_en.xml" value="0.32472826086956524" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_dictionary_ua.xml" value="0.32472826086956524" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_finish_game.xml" value="0.32472826086956524" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_game.xml" value="0.286231884057971" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_new_game.xml" value="0.286231884057971" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_new_game.xml" value="0.33" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_rules.xml" value="0.32472826086956524" />
-        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_start_game.xml" value="0.286231884057971" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/fragment_start_game.xml" value="0.33" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/switch_item.xml" value="0.15729166666666666" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/team_item.xml" value="0.9" />
+        <entry key="..\:/AndroidProject/Explainer/app/src/main/res/layout/team_score_item.xml" value="0.29347826086956524" />
         <entry key="..\:/AndroidProject/Explainer/app/src/main/res/menu/app_bar_menu.xml" value="0.15729166666666666" />
       </map>
     </option>
