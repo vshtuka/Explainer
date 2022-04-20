@@ -8,5 +8,5 @@ data class Team(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val name: String,
-    val score: Int
+    val score: Int = 0
 )
