@@ -63,10 +63,7 @@ class NewGameFragment : Fragment() {
     private fun setTeamAddButton() {
         binding.newGameAddTeamButton.setOnClickListener {
             viewModel.insertTeam(
-                Team(
-                    name = binding.newGameNewTeamEditText.text.toString(),
-                    score = 0
-                )
+                Team(name = binding.newGameNewTeamEditText.text.toString())
             )
         }
     }
