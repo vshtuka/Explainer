@@ -14,7 +14,6 @@ import com.vladshtuka.explainer.domain.repository.TeamRepository
 import com.vladshtuka.explainer.domain.repository.TimeRepository
 import com.vladshtuka.explainer.domain.usecase.dictionary.*
 import com.vladshtuka.explainer.domain.usecase.team.*
-import com.vladshtuka.explainer.domain.usecase.time.RemoveTimeUseCase
 import com.vladshtuka.explainer.domain.usecase.time.GetTimeUseCase
 import com.vladshtuka.explainer.domain.usecase.time.SetTimeUseCase
 import com.vladshtuka.explainer.domain.usecase.time.TimeUseCases
@@ -58,8 +57,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTeamRepository(database: TeamDatabase): TeamRepository {
-        return TeamRepositoryImpl(database.teamDao)
+    fun provideTeamRepository(
+        database: TeamDatabase,
+        sharedPreferences: SharedPreferences
+    ): TeamRepository {
+        return TeamRepositoryImpl(database.teamDao, sharedPreferences)
     }
 
     @Provides
@@ -86,7 +88,9 @@ object AppModule {
             insertTeamUseCase = InsertTeamUseCase(repository),
             deleteTeamUseCase = DeleteTeamUseCase(repository),
             getTeamNameUseCase = GetTeamNameUseCase(repository),
-            getAllTeamsUseCase = GetAllTeamsUseCase(repository)
+            getAllTeamsUseCase = GetAllTeamsUseCase(repository),
+            getTeamUseCase = GetTeamUseCase(repository),
+            setTeamUseCase = SetTeamUseCase(repository)
         )
     }
 
@@ -95,8 +99,7 @@ object AppModule {
     fun provideTimeUseCases(repository: TimeRepository): TimeUseCases {
         return TimeUseCases(
             getTimeUseCase = GetTimeUseCase(repository),
-            setTimeUseCases = SetTimeUseCase(repository),
-            removeTimeUseCase = RemoveTimeUseCase(repository)
+            setTimeUseCases = SetTimeUseCase(repository)
         )
     }
 

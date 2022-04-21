@@ -7,6 +7,4 @@ interface TimeRepository {
 
     suspend fun setTime(minutes: Int)
 
-    suspend fun removeTime()
-
 }

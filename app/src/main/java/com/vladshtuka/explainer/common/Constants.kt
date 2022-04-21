@@ -11,6 +11,9 @@ object Constants {
     const val DICTIONARY_DIALOG_TAG = "DictionaryDialog"
     const val TEAM_DATABASE_NAME = "team_database"
     const val TIME_KEY = "time"
+    const val TEAM_KEY = "team"
     const val MAX_ROUND_TIME = 10
     const val MIN_ROUND_TIME = 1
+    const val ONE_MINUTE = 60000L
+    const val ONE_SECOND = 1000L
 }
