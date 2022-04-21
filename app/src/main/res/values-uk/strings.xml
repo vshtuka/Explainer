@@ -25,4 +25,5 @@
     <string name="start_game">Почати гру</string>
     <string name="play_next">Наступними грають</string>
     <string name="team">Команда</string>
+    <string name="zero">0</string>
 </resources>

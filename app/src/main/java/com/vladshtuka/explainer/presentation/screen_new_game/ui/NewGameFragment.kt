@@ -37,8 +37,7 @@ class NewGameFragment : Fragment() {
         setNavigationButton()
         setDictionaryChoice()
         setTeamAddButton()
-        setTimePlusButton()
-        setTimeMinusButton()
+        setGameTime()
         initTeamsRecyclerView()
         setStartGameButton()
         setUpObservers()
@@ -68,13 +67,11 @@ class NewGameFragment : Fragment() {
         }
     }
 
-    private fun setTimePlusButton() {
+    private fun setGameTime() {
+        viewModel.setDefaultGameTime()
         binding.newGameTimePlusButton.setOnClickListener {
             viewModel.addMinute()
         }
-    }
-
-    private fun setTimeMinusButton() {
         binding.newGameTimeMinusButton.setOnClickListener {
             viewModel.subtractMinute()
         }

@@ -13,4 +13,7 @@ interface TeamRepository {
 
     fun getAllTeams(): LiveData<List<Team>>
 
+    suspend fun getTeam(): Team?
+
+    suspend fun setTeam(team: Team?)
 }

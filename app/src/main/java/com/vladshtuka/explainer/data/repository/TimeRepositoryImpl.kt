@@ -18,7 +18,4 @@ class TimeRepositoryImpl @Inject constructor(
         sharedPreferences.edit().putInt(Constants.TIME_KEY, minutes).apply()
     }
 
-    override suspend fun removeTime() {
-        sharedPreferences.edit().remove(Constants.TIME_KEY).apply()
-    }
 }

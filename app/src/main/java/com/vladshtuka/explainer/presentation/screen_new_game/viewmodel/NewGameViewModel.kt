@@ -98,4 +98,10 @@ class NewGameViewModel @Inject constructor(
             }
         }
     }
+
+    fun setDefaultGameTime() {
+        viewModelScope.launch {
+            timeUseCases.setTimeUseCases(Constants.MIN_ROUND_TIME)
+        }
+    }
 }
