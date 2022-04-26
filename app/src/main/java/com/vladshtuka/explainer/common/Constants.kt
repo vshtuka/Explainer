@@ -9,6 +9,7 @@ object Constants {
     const val DICTIONARY_EN = R.raw.dictionary_en
     const val DICTIONARY_UA = R.raw.dictionary_ua
     const val DICTIONARY_DIALOG_TAG = "DictionaryDialog"
+    const val NEW_GAME_DIALOG_TAG = "NewGameDialog"
     const val TEAM_DATABASE_NAME = "team_database"
     const val TIME_KEY = "time"
     const val TEAM_KEY = "team"

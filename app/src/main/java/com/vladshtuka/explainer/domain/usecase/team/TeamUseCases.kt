@@ -6,5 +6,6 @@ data class TeamUseCases(
     val getTeamNameUseCase: GetTeamNameUseCase,
     val getAllTeamsUseCase: GetAllTeamsUseCase,
     val getTeamUseCase: GetTeamUseCase,
-    val setTeamUseCase: SetTeamUseCase
+    val setTeamUseCase: SetTeamUseCase,
+    val clearTableUseCase: ClearTableUseCase
 )
