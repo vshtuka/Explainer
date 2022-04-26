@@ -29,5 +29,9 @@
     <string name="team">Team</string>
     <string name="zero">0</string>
     <string name="finish">Finish</string>
+    <string name="new_game_question">Do you want to start a new game?</string>
+    <string name="game_clear">Current game will be clear</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

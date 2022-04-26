@@ -16,4 +16,6 @@ interface TeamRepository {
     suspend fun getTeam(): Team?
 
     suspend fun setTeam(team: Team?)
+
+    suspend fun clearTable()
 }

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_rulesFragment"
             app:destination="@id/rulesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newGameDialogFragment"
+            app:destination="@id/newGameDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/newGameFragment"
@@ -107,4 +110,12 @@
         android:id="@+id/dictionaryUaFragment"
         android:name="com.vladshtuka.explainer.presentation.screen_new_game.ui.DictionaryUaFragment"
         android:label="DictionaryUaFragment" />
+    <dialog
+        android:id="@+id/newGameDialogFragment"
+        android:name="com.vladshtuka.explainer.presentation.screen_home.ui.NewGameDialogFragment"
+        android:label="NewGameDialogFragment" >
+        <action
+            android:id="@+id/action_newGameDialogFragment_to_newGameFragment"
+            app:destination="@id/newGameFragment" />
+    </dialog>
 </navigation>

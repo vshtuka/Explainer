@@ -39,4 +39,8 @@ class TeamRepositoryImpl @Inject constructor(
         val json = Gson().toJson(team)
         sharedPreferences.edit().putString(Constants.TEAM_KEY, json).apply()
     }
+
+    override suspend fun clearTable() {
+        teamDao.clearTable()
+    }
 }

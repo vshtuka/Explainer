@@ -27,4 +27,8 @@
     <string name="team">Команда</string>
     <string name="zero">0</string>
     <string name="finish">Завершити</string>
+    <string name="new_game_question">Розпочати нову гру?</string>
+    <string name="game_clear">Поточна гра буде видалена</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Відмінити</string>
 </resources>
