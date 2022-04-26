@@ -63,13 +63,19 @@
     </fragment>
     <fragment
         android:id="@+id/finishGameFragment"
-        android:name="com.vladshtuka.explainer.presentation.screen_finish_game.FinishGameFragment"
+        android:name="com.vladshtuka.explainer.presentation.screen_finish_game.ui.FinishGameFragment"
         android:label="FinishGameFragment" >
         <argument
             android:name="wordsList"
             app:argType="com.vladshtuka.explainer.domain.model.Word[]"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_finishGameFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_finishGameFragment_to_startGameFragment"
+            app:destination="@id/startGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/rulesFragment"

@@ -21,4 +21,10 @@ interface TeamDao {
 
     @Query("SELECT * FROM team_table")
     fun getAllTeams(): LiveData<List<Team>>
+
+    @Query("SELECT * FROM team_table WHERE id = :id ")
+    suspend fun getTeamById(id: Int): Team?
+
+    @Query("UPDATE team_table SET score =:score WHERE id = :id")
+    suspend fun updateTeam(score: Int, id: Int)
 }

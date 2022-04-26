@@ -10,9 +10,7 @@ import com.vladshtuka.explainer.domain.usecase.dictionary.DictionaryUseCases
 import com.vladshtuka.explainer.domain.usecase.team.TeamUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
-import kotlin.random.Random.Default.nextInt
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
