@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -27,6 +28,7 @@ class StartGameFragment : Fragment() {
             R.layout.fragment_start_game, container, false
         )
         setNavigationButton()
+        handleBackPressButton()
         setStartGameButton()
         setUpObservers()
 
@@ -36,8 +38,18 @@ class StartGameFragment : Fragment() {
     private fun setNavigationButton() {
         binding.startGameToolbar.setNavigationOnClickListener {
             this.findNavController()
-                .navigate(StartGameFragmentDirections.actionStartGameFragmentToNewGameFragment())
+                .navigate(StartGameFragmentDirections.actionStartGameFragmentToHomeFragment())
         }
+    }
+
+    private fun handleBackPressButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController()
+                    .navigate(StartGameFragmentDirections.actionStartGameFragmentToHomeFragment())
+            }
+        })
     }
 
     private fun setStartGameButton() {

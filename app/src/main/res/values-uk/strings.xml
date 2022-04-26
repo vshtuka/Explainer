@@ -31,4 +31,6 @@
     <string name="game_clear">Поточна гра буде видалена</string>
     <string name="ok">OK</string>
     <string name="cancel">Відмінити</string>
+    <string name="exit_to_menu">Вийти в меню?</string>
+    <string name="game_progress_lose">Прогрес раунду буде втрачений</string>
 </resources>
