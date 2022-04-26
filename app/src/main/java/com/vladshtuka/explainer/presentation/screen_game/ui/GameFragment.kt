@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -30,6 +31,7 @@ class GameFragment : Fragment() {
             R.layout.fragment_game, container, false
         )
         setNavigationButton()
+        handleBackPressButton()
         setWordCard()
         setTrueAnswer()
         setFalseAnswer()
@@ -42,9 +44,17 @@ class GameFragment : Fragment() {
     private fun setNavigationButton() {
         viewModel.getTeamName()
         binding.gameToolbar.setNavigationOnClickListener {
-            this.findNavController()
-                .navigate(GameFragmentDirections.actionGameFragmentToHomeFragment())
+            GameToHomeDialogFragment().show(childFragmentManager, Constants.GAME_TO_HOME_DIALOG_TAG)
         }
+    }
+
+    private fun handleBackPressButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                GameToHomeDialogFragment().show(childFragmentManager, Constants.GAME_TO_HOME_DIALOG_TAG)
+            }
+        })
     }
 
     private fun setWordCard() {
