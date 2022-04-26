@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import com.vladshtuka.explainer.common.Constants
 import com.vladshtuka.explainer.data.room.TeamDao
-import com.vladshtuka.explainer.domain.model.Dictionary
 import com.vladshtuka.explainer.domain.model.Team
 import com.vladshtuka.explainer.domain.repository.TeamRepository
 import javax.inject.Inject

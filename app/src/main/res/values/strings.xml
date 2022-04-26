@@ -28,5 +28,6 @@
     <string name="play_next">Play next</string>
     <string name="team">Team</string>
     <string name="zero">0</string>
+    <string name="finish">Finish</string>
 
 </resources>
