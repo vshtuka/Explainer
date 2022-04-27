@@ -12,7 +12,7 @@
     <string name="controversial_points_title">Спірні моменти</string>
     <string name="controversial_points_text">Якщо у грі відбувся спірний момент, наприклад, було використане неявне спільнокореневе слово - по закінченню часу існує можливість відредагувати результату раунду. Використовуючи опцію "зняти слово" команді буде нараховано 0 балів.</string>
     <string name="dictionary_title">Словник</string>
-    <string name="select_dictionary">Виберіть словник</string>
+    <string name="select_dictionary">Оберіть словник</string>
     <string name="team_title">Команди</string>
     <string name="add_team">Додати</string>
     <string name="team_name">Назва команди</string>
@@ -33,4 +33,6 @@
     <string name="cancel">Відмінити</string>
     <string name="exit_to_menu">Вийти в меню?</string>
     <string name="game_progress_lose">Прогрес раунду буде втрачений</string>
+    <string name="please_choose_dictionary">Будь ласка, оберіть словник</string>
+    <string name="please_add_team">Будь ласка, додайте, як мінімум, одну команду</string>
 </resources>

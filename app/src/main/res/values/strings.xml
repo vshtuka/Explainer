@@ -35,5 +35,7 @@
     <string name="cancel">Cancel</string>
     <string name="exit_to_menu">Exit to menu?</string>
     <string name="game_progress_lose">Round progress will be lost</string>
+    <string name="please_choose_dictionary">Please choose dictionary</string>
+    <string name="please_add_team">Please add at least one team</string>
 
 </resources>

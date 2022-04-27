@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.vladshtuka.explainer.R
 import com.vladshtuka.explainer.common.Constants
 import com.vladshtuka.explainer.domain.model.Dictionary
 import com.vladshtuka.explainer.domain.repository.DictionaryRepository
@@ -36,5 +37,18 @@ class DictionaryRepositoryImpl @Inject constructor(
 
     override suspend fun removeDictionary() {
         sharedPreferences.edit().remove(Constants.DICTIONARY_KEY).apply()
+    }
+
+    override suspend fun getDictionaryName(): String {
+        val json = sharedPreferences.getString(Constants.DICTIONARY_KEY, null)
+        return if (json == null) {
+            appContext.getString(R.string.select_dictionary)
+        } else {
+            Gson().fromJson(json, Dictionary::class.java).name
+        }
+    }
+
+    override fun isDictionaryChosen(): Boolean {
+        return null != sharedPreferences.getString(Constants.DICTIONARY_KEY, null)
     }
 }

@@ -11,4 +11,8 @@ interface DictionaryRepository {
     suspend fun setDictionary(dictionary: Dictionary?)
 
     suspend fun removeDictionary()
+
+    suspend fun getDictionaryName(): String
+
+    fun isDictionaryChosen(): Boolean
 }

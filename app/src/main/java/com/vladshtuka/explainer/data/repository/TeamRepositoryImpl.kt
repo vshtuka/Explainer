@@ -43,4 +43,5 @@ class TeamRepositoryImpl @Inject constructor(
     override suspend fun clearTable() {
         teamDao.clearTable()
     }
+    
 }
