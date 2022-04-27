@@ -77,7 +77,9 @@ object AppModule {
             getDictionariesFromJsonUseCase = GetDictionariesFromJsonUseCase(repository),
             getDictionaryUseCase = GetDictionaryUseCase(repository),
             setDictionaryUseCase = SetDictionaryUseCase(repository),
-            removeDictionaryUseCase = RemoveDictionaryUseCase(repository)
+            removeDictionaryUseCase = RemoveDictionaryUseCase(repository),
+            getDictionaryNameUseCase = GetDictionaryNameUseCase(repository),
+            isDictionaryChosenUseCase = IsDictionaryChosenUseCase(repository)
         )
     }
 
@@ -90,7 +92,8 @@ object AppModule {
             getTeamNameUseCase = GetTeamNameUseCase(repository),
             getAllTeamsUseCase = GetAllTeamsUseCase(repository),
             getTeamUseCase = GetTeamUseCase(repository),
-            setTeamUseCase = SetTeamUseCase(repository)
+            setTeamUseCase = SetTeamUseCase(repository),
+            clearTableUseCase = ClearTableUseCase(repository)
         )
     }
 

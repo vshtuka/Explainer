@@ -41,10 +41,7 @@ class NewGameViewModel @Inject constructor(
 
     fun getDictionaryName() {
         viewModelScope.launch {
-            val dictionary = dictionaryUseCases.getDictionaryUseCase()
-            if (dictionary != null) {
-                _dictionaryName.postValue(dictionary.name)
-            }
+            _dictionaryName.postValue(dictionaryUseCases.getDictionaryNameUseCase())
         }
     }
 
@@ -103,5 +100,13 @@ class NewGameViewModel @Inject constructor(
         viewModelScope.launch {
             timeUseCases.setTimeUseCases(Constants.MIN_ROUND_TIME)
         }
+    }
+
+    fun isDictionaryChosen(): Boolean {
+       return dictionaryUseCases.isDictionaryChosenUseCase()
+    }
+
+    fun isTeamAdded(): Boolean {
+        return teamsList.value?.isNotEmpty() ?: false
     }
 }

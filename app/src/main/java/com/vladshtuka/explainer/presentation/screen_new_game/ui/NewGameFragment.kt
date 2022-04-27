@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -13,7 +15,6 @@ import com.vladshtuka.explainer.R
 import com.vladshtuka.explainer.common.Constants
 import com.vladshtuka.explainer.databinding.FragmentNewGameBinding
 import com.vladshtuka.explainer.domain.model.Team
-import com.vladshtuka.explainer.presentation.screen_home.ui.HomeFragmentDirections
 import com.vladshtuka.explainer.presentation.screen_new_game.adapter.TeamAdapter
 import com.vladshtuka.explainer.presentation.screen_new_game.adapter.TeamListener
 import com.vladshtuka.explainer.presentation.screen_new_game.viewmodel.NewGameViewModel
@@ -35,6 +36,7 @@ class NewGameFragment : Fragment() {
             R.layout.fragment_new_game, container, false
         )
         setNavigationButton()
+        handleBackPressButton()
         setDictionaryChoice()
         setTeamAddButton()
         setGameTime()
@@ -50,6 +52,15 @@ class NewGameFragment : Fragment() {
             this.findNavController()
                 .navigate(NewGameFragmentDirections.actionNewGameFragmentToHomeFragment())
         }
+    }
+
+    private fun handleBackPressButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(NewGameFragmentDirections.actionNewGameFragmentToHomeFragment())
+            }
+        })
     }
 
     private fun setDictionaryChoice() {
@@ -92,8 +103,16 @@ class NewGameFragment : Fragment() {
 
     private fun setStartGameButton() {
         binding.newGameStartGameButton.setOnClickListener {
-            this.findNavController()
-                .navigate(NewGameFragmentDirections.actionNewGameFragmentToStartGameFragment())
+            if (viewModel.isDictionaryChosen() && viewModel.isTeamAdded()) {
+                this.findNavController()
+                    .navigate(NewGameFragmentDirections.actionNewGameFragmentToStartGameFragment())
+            } else if (!viewModel.isDictionaryChosen()) {
+                Toast.makeText(requireContext(), getString(R.string.please_choose_dictionary), Toast.LENGTH_SHORT)
+                    .show()
+            } else if (!viewModel.isTeamAdded()) {
+                Toast.makeText(requireContext(), getString(R.string.please_add_team), Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 
