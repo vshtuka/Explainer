@@ -25,4 +25,10 @@ class FinishGameViewModel @Inject constructor(
         }
     }
 
+    fun removeActiveTeam() {
+        viewModelScope.launch {
+            teamUseCases.removeActiveTeamUseCase()
+        }
+    }
+
 }

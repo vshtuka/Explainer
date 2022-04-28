@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -54,8 +55,16 @@ class StartGameFragment : Fragment() {
 
     private fun setStartGameButton() {
         binding.startGameStartGameButton.setOnClickListener {
-            this.findNavController()
-                .navigate(StartGameFragmentDirections.actionStartGameFragmentToGameFragment())
+            if (viewModel.isTeamChosen()) {
+                this.findNavController()
+                    .navigate(StartGameFragmentDirections.actionStartGameFragmentToGameFragment())
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.please_choose_team),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 

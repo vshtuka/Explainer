@@ -79,6 +79,7 @@ class FinishGameFragment : Fragment() {
 
     private fun setFinishGameButton() {
         binding.finishGameFinishGameButton.setOnClickListener {
+            viewModel.removeActiveTeam()
             this.findNavController()
                 .navigate(FinishGameFragmentDirections.actionFinishGameFragmentToStartGameFragment())
         }

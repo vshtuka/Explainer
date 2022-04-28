@@ -33,6 +33,7 @@ class NewGameDialogFragment : DialogFragment() {
     private fun cleanGameInformation() {
         viewModel.removeDictionary()
         viewModel.removeTeams()
+        viewModel.removeActiveTeam()
     }
 
 }

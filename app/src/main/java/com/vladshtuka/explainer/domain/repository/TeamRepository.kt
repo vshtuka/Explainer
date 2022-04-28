@@ -17,5 +17,10 @@ interface TeamRepository {
 
     suspend fun setTeam(team: Team?)
 
+    suspend fun removeTeam()
+
+    fun isTeamChosen(): Boolean
+
     suspend fun clearTable()
+
 }

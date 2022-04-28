@@ -20,4 +20,9 @@ class StartGameViewModel @Inject constructor(
             teamUseCases.setTeamUseCase(team)
         }
     }
+
+    fun isTeamChosen(): Boolean {
+        return teamUseCases.isTeamChosenUseCase()
+    }
+
 }
