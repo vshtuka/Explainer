@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello_blank_fragment">Доброго вечора, ми з України!</string>
     <string name="rules">Правила</string>
     <string name="new_game">Нова гра</string>
     <string name="continue_game">Продовжити</string>
@@ -35,4 +34,5 @@
     <string name="game_progress_lose">Прогрес раунду буде втрачений</string>
     <string name="please_choose_dictionary">Будь ласка, оберіть словник</string>
     <string name="please_add_team">Будь ласка, додайте, як мінімум, одну команду</string>
+    <string name="please_choose_team">Будь ласка, оберіть команду</string>
 </resources>

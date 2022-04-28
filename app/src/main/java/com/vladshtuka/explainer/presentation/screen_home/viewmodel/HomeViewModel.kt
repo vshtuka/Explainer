@@ -26,4 +26,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun removeActiveTeam() {
+        viewModelScope.launch {
+            teamsUseCases.removeActiveTeamUseCase()
+        }
+    }
+
 }

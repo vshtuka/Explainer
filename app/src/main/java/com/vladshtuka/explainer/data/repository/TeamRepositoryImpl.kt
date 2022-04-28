@@ -40,8 +40,16 @@ class TeamRepositoryImpl @Inject constructor(
         sharedPreferences.edit().putString(Constants.TEAM_KEY, json).apply()
     }
 
+    override suspend fun removeTeam() {
+        sharedPreferences.edit().remove(Constants.TEAM_KEY).apply()
+    }
+
+    override fun isTeamChosen(): Boolean {
+        return null != sharedPreferences.getString(Constants.TEAM_KEY, null)
+    }
+
     override suspend fun clearTable() {
         teamDao.clearTable()
     }
-    
+
 }
