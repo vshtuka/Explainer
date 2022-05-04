@@ -4,21 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.vladshtuka.explainer.R
 import com.vladshtuka.explainer.databinding.FragmentStartGameBinding
+import com.vladshtuka.explainer.presentation.screen_start_game.adapter.TeamScoreAdapter
 import com.vladshtuka.explainer.presentation.screen_start_game.viewmodel.StartGameViewModel
 
 class StartGameFragment : Fragment() {
 
     private lateinit var binding: FragmentStartGameBinding
     private val viewModel: StartGameViewModel by activityViewModels()
+    private lateinit var teamScoreAdapter: TeamScoreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,7 @@ class StartGameFragment : Fragment() {
         setNavigationButton()
         handleBackPressButton()
         setStartGameButton()
+        initTeamScoreRecyclerView()
         setUpObservers()
 
         return binding.root
@@ -68,18 +71,20 @@ class StartGameFragment : Fragment() {
         }
     }
 
+    private fun initTeamScoreRecyclerView() {
+        teamScoreAdapter = TeamScoreAdapter()
+        binding.startGameTeamScoreRecyclerView.adapter = teamScoreAdapter
+        binding.startGameTeamScoreRecyclerView.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
+    }
+
     private fun setUpObservers() {
         viewModel.teamsList.observe(viewLifecycleOwner) { teamsList ->
-            for (team in teamsList) {
-                val radioButton = layoutInflater.inflate(R.layout.radio_button, null) as RadioButton
-                val text = team.name + " = " + team.score
-                radioButton.text = text
-                radioButton.setOnClickListener {
-                    binding.startGameTeam.text = team.name
-                    viewModel.setTeam(team)
-                }
-                binding.startGameRadioGroup.addView(radioButton)
-            }
+            teamScoreAdapter.submitList(teamsList)
         }
     }
 

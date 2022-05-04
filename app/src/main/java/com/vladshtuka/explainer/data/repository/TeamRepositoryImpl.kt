@@ -52,4 +52,8 @@ class TeamRepositoryImpl @Inject constructor(
         teamDao.clearTable()
     }
 
+    override suspend fun updateTeamScore(score: Int, id: Int) {
+        teamDao.updateTeamScore(score, id)
+    }
+
 }

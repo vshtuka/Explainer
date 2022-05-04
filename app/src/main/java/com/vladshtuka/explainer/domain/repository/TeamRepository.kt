@@ -23,4 +23,6 @@ interface TeamRepository {
 
     suspend fun clearTable()
 
+    suspend fun updateTeamScore(score: Int, id: Int)
+
 }

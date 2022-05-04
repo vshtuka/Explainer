@@ -95,7 +95,8 @@ object AppModule {
             setTeamUseCase = SetTeamUseCase(repository),
             clearTableUseCase = ClearTableUseCase(repository),
             removeActiveTeamUseCase = RemoveActiveTeamUseCase(repository),
-            isTeamChosenUseCase = IsTeamChosenUseCase(repository)
+            isTeamChosenUseCase = IsTeamChosenUseCase(repository),
+            updateTeamScoreUseCase = UpdateTeamScoreUseCase(repository)
         )
     }
 
