@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Word(
     val word: String,
-    val isAnswerTrue: Boolean
+    var isAnswerTrue: Boolean
 ) : Parcelable

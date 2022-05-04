@@ -26,7 +26,7 @@ interface TeamDao {
     suspend fun getTeamById(id: Int): Team?
 
     @Query("UPDATE team_table SET score =:score WHERE id = :id")
-    suspend fun updateTeam(score: Int, id: Int)
+    suspend fun updateTeamScore(score: Int, id: Int)
 
     @Query("DELETE FROM team_table")
     suspend fun clearTable()

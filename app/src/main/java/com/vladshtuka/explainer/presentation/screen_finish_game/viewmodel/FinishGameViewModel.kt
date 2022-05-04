@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vladshtuka.explainer.domain.model.Word
 import com.vladshtuka.explainer.domain.usecase.team.TeamUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,6 +19,8 @@ class FinishGameViewModel @Inject constructor(
     val teamName: LiveData<String?>
         get() = _teamName
 
+   var score = 0
+
     fun getTeamName() {
         viewModelScope.launch {
             val teamName = teamUseCases.getTeamUseCase()?.name
@@ -29,6 +32,34 @@ class FinishGameViewModel @Inject constructor(
         viewModelScope.launch {
             teamUseCases.removeActiveTeamUseCase()
         }
+    }
+
+    fun updateTeamScore() {
+        viewModelScope.launch {
+            teamUseCases.updateTeamScoreUseCase(score, teamUseCases.getTeamUseCase()!!.id!!)
+        }
+    }
+
+    fun initScore(words: List<Word>?) {
+        var score = 0
+        if (words != null) {
+            for (word in words) {
+                if (word.isAnswerTrue) {
+                    score++
+                } else {
+                    score--
+                }
+            }
+            this.score = score
+        }
+    }
+
+    fun addOnePoint() {
+        score++
+    }
+
+    fun subtractOnePoint() {
+        score--
     }
 
 }

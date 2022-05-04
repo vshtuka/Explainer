@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.vladshtuka.explainer.R
 import com.vladshtuka.explainer.common.Constants
 import com.vladshtuka.explainer.databinding.FragmentFinishGameBinding
+import com.vladshtuka.explainer.domain.model.Word
 import com.vladshtuka.explainer.presentation.screen_finish_game.adapter.AnswerFalseListener
 import com.vladshtuka.explainer.presentation.screen_finish_game.adapter.WordAdapter
 import com.vladshtuka.explainer.presentation.screen_finish_game.adapter.AnswerTrueListener
@@ -33,19 +34,28 @@ class FinishGameFragment : Fragment() {
             inflater,
             R.layout.fragment_finish_game, container, false
         )
+        val words = FinishGameFragmentArgs.fromBundle(requireArguments()).wordsList?.toList()
         setNavigationButton()
         handleBackPressButton()
-        initRecyclerView()
+        initRecyclerView(words)
+        initScore(words)
         setFinishGameButton()
         setUpObservers()
 
         return binding.root
     }
 
+    private fun initScore(words: List<Word>?) {
+        viewModel.initScore(words)
+    }
+
     private fun setNavigationButton() {
         viewModel.getTeamName()
         binding.finishGameToolbar.setNavigationOnClickListener {
-            FinishToHomeDialogFragment().show(childFragmentManager, Constants.FINISH_GAME_TO_HOME_DIALOG_TAG)
+            FinishToHomeDialogFragment().show(
+                childFragmentManager,
+                Constants.FINISH_GAME_TO_HOME_DIALOG_TAG
+            )
         }
     }
 
@@ -53,18 +63,33 @@ class FinishGameFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object :
             OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                FinishToHomeDialogFragment().show(childFragmentManager, Constants.FINISH_GAME_TO_HOME_DIALOG_TAG)
+                FinishToHomeDialogFragment().show(
+                    childFragmentManager,
+                    Constants.FINISH_GAME_TO_HOME_DIALOG_TAG
+                )
             }
         })
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(words: List<Word>?) {
         wordAdapter = WordAdapter(AnswerTrueListener { word, answerTrue, answerFalse ->
-            answerTrue!!.setImageResource(R.drawable.check_circle)
-            answerFalse!!.setImageResource(R.drawable.outline_cancel)
+            if (word != null) {
+                if (!word.isAnswerTrue) {
+                    answerTrue!!.setImageResource(R.drawable.check_circle)
+                    answerFalse!!.setImageResource(R.drawable.outline_cancel)
+                    viewModel.addOnePoint()
+                    word.isAnswerTrue = true
+                }
+            }
         }, AnswerFalseListener { word, answerFalse, answerTrue ->
-            answerFalse!!.setImageResource(R.drawable.cancel)
-            answerTrue!!.setImageResource(R.drawable.check_circle_outline)
+            if(word != null) {
+                if(word.isAnswerTrue) {
+                    answerFalse!!.setImageResource(R.drawable.cancel)
+                    answerTrue!!.setImageResource(R.drawable.check_circle_outline)
+                    viewModel.subtractOnePoint()
+                    word.isAnswerTrue = false
+                }
+            }
         })
         binding.finishGameRecyclerView.adapter = wordAdapter
         binding.finishGameRecyclerView.addItemDecoration(
@@ -73,12 +98,12 @@ class FinishGameFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        val args = FinishGameFragmentArgs.fromBundle(requireArguments()).wordsList?.toList()
-        wordAdapter.submitList(args)
+        wordAdapter.submitList(words)
     }
 
     private fun setFinishGameButton() {
         binding.finishGameFinishGameButton.setOnClickListener {
+            viewModel.updateTeamScore()
             viewModel.removeActiveTeam()
             this.findNavController()
                 .navigate(FinishGameFragmentDirections.actionFinishGameFragmentToStartGameFragment())

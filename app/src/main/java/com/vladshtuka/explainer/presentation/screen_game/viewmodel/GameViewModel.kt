@@ -8,6 +8,7 @@ import com.vladshtuka.explainer.domain.model.Dictionary
 import com.vladshtuka.explainer.domain.model.Word
 import com.vladshtuka.explainer.domain.usecase.dictionary.DictionaryUseCases
 import com.vladshtuka.explainer.domain.usecase.team.TeamUseCases
+import com.vladshtuka.explainer.domain.usecase.time.TimeUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class GameViewModel @Inject constructor(
     private val dictionaryUseCases: DictionaryUseCases,
-    private val teamUseCases: TeamUseCases
+    private val teamUseCases: TeamUseCases,
+    private val timeUseCases: TimeUseCases
 ) : ViewModel() {
 
     private val _teamName = MutableLiveData<String?>()

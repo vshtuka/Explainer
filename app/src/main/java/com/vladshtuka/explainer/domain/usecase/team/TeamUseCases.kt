@@ -9,5 +9,6 @@ data class TeamUseCases(
     val setTeamUseCase: SetTeamUseCase,
     val clearTableUseCase: ClearTableUseCase,
     val removeActiveTeamUseCase: RemoveActiveTeamUseCase,
-    val isTeamChosenUseCase: IsTeamChosenUseCase
+    val isTeamChosenUseCase: IsTeamChosenUseCase,
+    val updateTeamScoreUseCase: UpdateTeamScoreUseCase
 )
