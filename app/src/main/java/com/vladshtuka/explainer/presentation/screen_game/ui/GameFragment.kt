@@ -35,8 +35,8 @@ class GameFragment : Fragment() {
         setWordCard()
         setTrueAnswer()
         setFalseAnswer()
-        setUpObservers()
         startTimer()
+        setUpObservers()
 
         return binding.root
     }
@@ -52,7 +52,10 @@ class GameFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object :
             OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                GameToHomeDialogFragment().show(childFragmentManager, Constants.GAME_TO_HOME_DIALOG_TAG)
+                GameToHomeDialogFragment().show(
+                    childFragmentManager,
+                    Constants.GAME_TO_HOME_DIALOG_TAG
+                )
             }
         })
     }
@@ -80,30 +83,40 @@ class GameFragment : Fragment() {
         }
     }
 
+    private fun startTimer() {
+        viewModel.getTime()
+    }
+
     private fun setUpObservers() {
         viewModel.teamName.observe(viewLifecycleOwner) { teamName ->
             binding.gameToolbar.title = teamName
         }
-    }
 
-    private fun startTimer() {
-        val timer = object : CountDownTimer(Constants.ONE_MINUTE, Constants.ONE_SECOND) {
-            override fun onTick(millisUntilFinished: Long) {
-                val secondsLeft =
-                    (millisUntilFinished / Constants.ONE_SECOND.toDouble()).roundToInt()
-                binding.gameTimer.text = secondsLeft.toString()
+        viewModel.gameTime.observe(viewLifecycleOwner) { gameTime ->
+            if (gameTime != null) {
+                val timer = object : CountDownTimer(
+                    Constants.ONE_MINUTE * gameTime,
+                    Constants.ONE_SECOND
+                ) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        val secondsLeft =
+                            (millisUntilFinished / Constants.ONE_SECOND.toDouble()).roundToInt()
+                        binding.gameTimer.text = secondsLeft.toString()
+                    }
+
+                    override fun onFinish() {
+                        findNavController().navigate(
+                            GameFragmentDirections.actionGameFragmentToFinishGameFragment(
+                                viewModel.getWordsList().toTypedArray()
+                            )
+                        )
+                        viewModel.clearWordsList()
+                    }
+
+                }
+                timer.start()
             }
-
-            override fun onFinish() {
-                findNavController().navigate(
-                    GameFragmentDirections.actionGameFragmentToFinishGameFragment(
-                        viewModel.getWordsList().toTypedArray()
-                    )
-                )
-                viewModel.clearWordsList()
-            }
-
         }
-        timer.start()
     }
+
 }

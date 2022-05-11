@@ -72,7 +72,7 @@ class StartGameFragment : Fragment() {
     }
 
     private fun initTeamScoreRecyclerView() {
-        teamScoreAdapter = TeamScoreAdapter()
+        teamScoreAdapter = TeamScoreAdapter(viewModel)
         binding.startGameTeamScoreRecyclerView.adapter = teamScoreAdapter
         binding.startGameTeamScoreRecyclerView.addItemDecoration(
             DividerItemDecoration(

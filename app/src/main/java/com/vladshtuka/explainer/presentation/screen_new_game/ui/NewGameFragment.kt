@@ -72,7 +72,7 @@ class NewGameFragment : Fragment() {
 
     private fun setTeamAddButton() {
         binding.newGameAddTeamButton.setOnClickListener {
-            viewModel.insertTeam(
+            viewModel.addTeam(
                 Team(name = binding.newGameNewTeamEditText.text.toString())
             )
         }
@@ -90,7 +90,7 @@ class NewGameFragment : Fragment() {
 
     private fun initTeamsRecyclerView() {
         teamAdapter = TeamAdapter(TeamListener { team ->
-            viewModel.deleteTeamById(team?.id)
+            viewModel.deleteTeam(team!!.id!!)
         })
         binding.newGameTeamsRecyclerView.adapter = teamAdapter
         binding.newGameTeamsRecyclerView.addItemDecoration(

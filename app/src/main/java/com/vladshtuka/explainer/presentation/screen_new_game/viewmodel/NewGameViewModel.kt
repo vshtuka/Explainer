@@ -62,17 +62,17 @@ class NewGameViewModel @Inject constructor(
         }
     }
 
-    fun insertTeam(team: Team) {
+    fun addTeam(team: Team) {
         viewModelScope.launch {
-            if (teamUseCases.getTeamNameUseCase(team.name) == null) {
-                teamUseCases.insertTeamUseCase(team)
+            if (teamUseCases.isTeamExistUseCase(team.name)) {
+                teamUseCases.addTeamUseCase(team)
             }
         }
     }
 
-    fun deleteTeamById(id: Int?) {
+    fun deleteTeam(id: Int) {
         viewModelScope.launch {
-            teamUseCases.deleteTeamUseCase(id!!)
+            teamUseCases.deleteTeamUseCase(id)
         }
     }
 

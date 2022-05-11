@@ -5,7 +5,7 @@ import com.vladshtuka.explainer.domain.repository.TeamRepository
 class RemoveActiveTeamUseCase(private val repository: TeamRepository) {
 
     suspend operator fun invoke() {
-        repository.removeTeam()
+        repository.removeActiveTeam()
     }
 
 }

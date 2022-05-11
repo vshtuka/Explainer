@@ -24,6 +24,10 @@ class GameViewModel @Inject constructor(
     val teamName: LiveData<String?>
         get() = _teamName
 
+    private val _gameTime = MutableLiveData<Int?>()
+    val gameTime: LiveData<Int?>
+        get() = _gameTime
+
     private lateinit var dictionary: Dictionary
     private val wordsList = mutableListOf<Word>()
 
@@ -54,6 +58,12 @@ class GameViewModel @Inject constructor(
 
     fun clearWordsList() {
         wordsList.clear()
+    }
+
+    fun getTime() {
+        viewModelScope.launch {
+            _gameTime.postValue(timeUseCases.getTimeUseCase())
+        }
     }
 
 }

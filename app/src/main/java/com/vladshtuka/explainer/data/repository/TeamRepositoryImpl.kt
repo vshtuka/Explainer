@@ -14,12 +14,12 @@ class TeamRepositoryImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : TeamRepository {
 
-    override suspend fun insertTeam(team: Team) {
-        teamDao.insertTeam(team)
+    override suspend fun addTeam(team: Team) {
+        teamDao.addTeam(team)
     }
 
-    override suspend fun deleteTeamById(id: Int) {
-        teamDao.deleteTeamById(id)
+    override suspend fun deleteTeam(id: Int) {
+        teamDao.deleteTeam(id)
     }
 
     override suspend fun getTeamName(name: String): String? {
@@ -40,7 +40,7 @@ class TeamRepositoryImpl @Inject constructor(
         sharedPreferences.edit().putString(Constants.TEAM_KEY, json).apply()
     }
 
-    override suspend fun removeTeam() {
+    override suspend fun removeActiveTeam() {
         sharedPreferences.edit().remove(Constants.TEAM_KEY).apply()
     }
 
@@ -48,8 +48,8 @@ class TeamRepositoryImpl @Inject constructor(
         return null != sharedPreferences.getString(Constants.TEAM_KEY, null)
     }
 
-    override suspend fun clearTable() {
-        teamDao.clearTable()
+    override suspend fun removeTeams() {
+        teamDao.removeTeams()
     }
 
     override suspend fun updateTeamScore(score: Int, id: Int) {

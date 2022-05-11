@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor(
 
     fun removeTeams() {
         viewModelScope.launch {
-            teamsUseCases.clearTableUseCase()
+            teamsUseCases.removeTeamsUseCase()
         }
     }
 

@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vladshtuka.explainer.databinding.TeamScoreRadioButtonItemBinding
 import com.vladshtuka.explainer.domain.model.Team
+import com.vladshtuka.explainer.presentation.screen_start_game.viewmodel.StartGameViewModel
 
 class TeamScoreAdapter(
-    ) : ListAdapter<Team, TeamScoreAdapter.TeamScoreViewHolder>(TeamDiffCallback()) {
-
+    private val viewModel: StartGameViewModel
+) : ListAdapter<Team, TeamScoreAdapter.TeamScoreViewHolder>(TeamDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamScoreViewHolder {
         return TeamScoreViewHolder.from(parent)
@@ -23,10 +24,10 @@ class TeamScoreAdapter(
         holder.getRadioButton().setOnClickListener {
             if (lastSelectedPosition >= 0) {
                 notifyItemChanged(lastSelectedPosition)
+                viewModel.setTeam(getItem(position))
             }
             lastSelectedPosition = position
             notifyItemChanged(lastSelectedPosition)
-
         }
     }
 

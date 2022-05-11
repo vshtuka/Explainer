@@ -87,16 +87,17 @@ object AppModule {
     @Singleton
     fun provideTeamUseCases(repository: TeamRepository): TeamUseCases {
         return TeamUseCases(
-            insertTeamUseCase = InsertTeamUseCase(repository),
+            addTeamUseCase = AddTeamUseCase(repository),
             deleteTeamUseCase = DeleteTeamUseCase(repository),
             getTeamNameUseCase = GetTeamNameUseCase(repository),
             getAllTeamsUseCase = GetAllTeamsUseCase(repository),
             getTeamUseCase = GetTeamUseCase(repository),
             setTeamUseCase = SetTeamUseCase(repository),
-            clearTableUseCase = ClearTableUseCase(repository),
+            removeTeamsUseCase = RemoveTeamsUseCase(repository),
             removeActiveTeamUseCase = RemoveActiveTeamUseCase(repository),
             isTeamChosenUseCase = IsTeamChosenUseCase(repository),
-            updateTeamScoreUseCase = UpdateTeamScoreUseCase(repository)
+            updateTeamScoreUseCase = UpdateTeamScoreUseCase(repository),
+            isTeamExistUseCase = IsTeamExistUseCase(repository)
         )
     }
 
