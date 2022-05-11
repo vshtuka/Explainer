@@ -24,10 +24,10 @@ class TeamScoreAdapter(
         holder.getRadioButton().setOnClickListener {
             if (lastSelectedPosition >= 0) {
                 notifyItemChanged(lastSelectedPosition)
-                viewModel.setTeam(getItem(position))
             }
             lastSelectedPosition = position
             notifyItemChanged(lastSelectedPosition)
+            viewModel.setTeam(getItem(position))
         }
     }
 
