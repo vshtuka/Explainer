@@ -19,4 +19,5 @@ object Constants {
     const val MIN_ROUND_TIME = 1
     const val ONE_MINUTE = 60000L
     const val ONE_SECOND = 1000L
+    const val DICTIONARIES_COUNT = 2
 }

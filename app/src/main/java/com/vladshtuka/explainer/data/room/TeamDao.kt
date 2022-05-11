@@ -11,10 +11,10 @@ import com.vladshtuka.explainer.domain.model.Team
 interface TeamDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTeam(team: Team)
+    suspend fun addTeam(team: Team)
 
     @Query("DELETE FROM team_table WHERE id = :id")
-    suspend fun deleteTeamById(id: Int)
+    suspend fun deleteTeam(id: Int)
 
     @Query("SELECT name FROM team_table WHERE name = :name LIMIT 1")
     suspend fun getTeamName(name: String): String?
@@ -29,5 +29,5 @@ interface TeamDao {
     suspend fun updateTeamScore(score: Int, id: Int)
 
     @Query("DELETE FROM team_table")
-    suspend fun clearTable()
+    suspend fun removeTeams()
 }
