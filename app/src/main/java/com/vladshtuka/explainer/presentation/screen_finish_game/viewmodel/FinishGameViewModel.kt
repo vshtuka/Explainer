@@ -36,7 +36,10 @@ class FinishGameViewModel @Inject constructor(
 
     fun updateTeamScore() {
         viewModelScope.launch {
-            teamUseCases.updateTeamScoreUseCase(score, teamUseCases.getTeamUseCase()!!.id!!)
+            val teamId = teamUseCases.getTeamUseCase()!!.id!!
+            val teamScore = teamUseCases.getTeamUseCase()!!.score
+            val teamNewScore = teamScore + score
+            teamUseCases.updateTeamScoreUseCase(teamNewScore, teamId)
         }
     }
 
