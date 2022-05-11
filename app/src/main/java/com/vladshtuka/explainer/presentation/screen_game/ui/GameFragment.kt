@@ -105,12 +105,14 @@ class GameFragment : Fragment() {
                     }
 
                     override fun onFinish() {
-                        findNavController().navigate(
-                            GameFragmentDirections.actionGameFragmentToFinishGameFragment(
-                                viewModel.getWordsList().toTypedArray()
+                        if (findNavController().currentDestination?.id == R.id.gameFragment) {
+                            findNavController().navigate(
+                                GameFragmentDirections.actionGameFragmentToFinishGameFragment(
+                                    viewModel.getWordsList().toTypedArray()
+                                )
                             )
-                        )
-                        viewModel.clearWordsList()
+                            viewModel.clearWordsList()
+                        }
                     }
 
                 }
