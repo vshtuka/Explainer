@@ -14,6 +14,8 @@ class TeamScoreAdapter(
     private val viewModel: StartGameViewModel
 ) : ListAdapter<Team, TeamScoreAdapter.TeamScoreViewHolder>(TeamDiffCallback()) {
 
+    var lastSelectedPosition = -1
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamScoreViewHolder {
         return TeamScoreViewHolder.from(parent)
     }
@@ -55,9 +57,6 @@ class TeamScoreAdapter(
 
     }
 
-    companion object {
-        var lastSelectedPosition = -1
-    }
 }
 
 class TeamDiffCallback : DiffUtil.ItemCallback<Team>() {

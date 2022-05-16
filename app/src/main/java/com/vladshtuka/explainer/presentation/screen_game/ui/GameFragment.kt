@@ -105,8 +105,8 @@ class GameFragment : Fragment() {
                     }
 
                     override fun onFinish() {
-                        viewModel.addWordToList(Word(binding.gameWordText.text.toString(), false))
                         if (findNavController().currentDestination?.id == R.id.gameFragment) {
+                            viewModel.addWordToList(Word(binding.gameWordText.text.toString(), false))
                             findNavController().navigate(
                                 GameFragmentDirections.actionGameFragmentToFinishGameFragment(
                                     viewModel.getWordsList().toTypedArray()
