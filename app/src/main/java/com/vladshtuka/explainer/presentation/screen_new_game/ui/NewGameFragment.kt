@@ -75,6 +75,7 @@ class NewGameFragment : Fragment() {
             viewModel.addTeam(
                 Team(name = binding.newGameNewTeamEditText.text.toString())
             )
+            binding.newGameNewTeamEditText.text.clear()
         }
     }
 
