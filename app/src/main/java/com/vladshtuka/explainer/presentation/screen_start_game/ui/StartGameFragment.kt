@@ -59,6 +59,7 @@ class StartGameFragment : Fragment() {
     private fun setStartGameButton() {
         binding.startGameStartGameButton.setOnClickListener {
             if (viewModel.isTeamChosen()) {
+                teamScoreAdapter.lastSelectedPosition = -1
                 this.findNavController()
                     .navigate(StartGameFragmentDirections.actionStartGameFragmentToGameFragment())
             } else {

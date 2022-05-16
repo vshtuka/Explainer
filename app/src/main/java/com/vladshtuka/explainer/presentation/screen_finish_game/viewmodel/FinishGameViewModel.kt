@@ -19,7 +19,7 @@ class FinishGameViewModel @Inject constructor(
     val teamName: LiveData<String?>
         get() = _teamName
 
-   var score = 0
+    var score = 0
 
     fun getTeamName() {
         viewModelScope.launch {
@@ -63,6 +63,14 @@ class FinishGameViewModel @Inject constructor(
 
     fun subtractOnePoint() {
         score--
+    }
+
+    fun addTwoPoints() {
+        score += 2
+    }
+
+    fun subtractTwoPoints() {
+        score -= 2
     }
 
 }

@@ -77,7 +77,7 @@ class FinishGameFragment : Fragment() {
                 if (!word.isAnswerTrue) {
                     answerTrue!!.setImageResource(R.drawable.check_circle)
                     answerFalse!!.setImageResource(R.drawable.outline_cancel)
-                    viewModel.addOnePoint()
+                    viewModel.addTwoPoints()
                     word.isAnswerTrue = true
                 }
             }
@@ -86,7 +86,7 @@ class FinishGameFragment : Fragment() {
                 if(word.isAnswerTrue) {
                     answerFalse!!.setImageResource(R.drawable.cancel)
                     answerTrue!!.setImageResource(R.drawable.check_circle_outline)
-                    viewModel.subtractOnePoint()
+                    viewModel.subtractTwoPoints()
                     word.isAnswerTrue = false
                 }
             }
