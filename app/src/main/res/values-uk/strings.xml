@@ -35,4 +35,5 @@
     <string name="please_choose_dictionary">Будь ласка, оберіть словник</string>
     <string name="please_add_team">Будь ласка, додайте, як мінімум, одну команду</string>
     <string name="please_choose_team">Будь ласка, оберіть команду</string>
+    <string name="pause">Пауза</string>
 </resources>

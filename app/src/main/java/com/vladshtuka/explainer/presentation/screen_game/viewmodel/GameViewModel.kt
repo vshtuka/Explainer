@@ -12,6 +12,7 @@ import com.vladshtuka.explainer.domain.usecase.time.TimeUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -28,7 +29,12 @@ class GameViewModel @Inject constructor(
     val gameTime: LiveData<Int?>
         get() = _gameTime
 
+    private val _isGameActive = MutableLiveData<Boolean?>()
+    val isGameActive: LiveData<Boolean?>
+        get() = _isGameActive
+
     private lateinit var dictionary: Dictionary
+    private var timeRemaining = 0L
     private val wordsList = mutableListOf<Word>()
 
     fun getTeamName() {
@@ -64,6 +70,22 @@ class GameViewModel @Inject constructor(
         viewModelScope.launch {
             _gameTime.postValue(timeUseCases.getTimeUseCase())
         }
+    }
+
+    fun startGame() {
+        _isGameActive.postValue(true)
+    }
+
+    fun cancelGame() {
+        _isGameActive.postValue(false)
+    }
+
+    fun setTimeRemaining(millisUntilFinished: Long) {
+        timeRemaining = millisUntilFinished
+    }
+
+    fun getTimeRemaining(): Long {
+        return timeRemaining
     }
 
 }

@@ -20,6 +20,7 @@ import kotlin.math.roundToInt
 class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentGameBinding
+    private lateinit var timer: CountDownTimer
     private val viewModel: GameViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -35,7 +36,8 @@ class GameFragment : Fragment() {
         setWordCard()
         setTrueAnswer()
         setFalseAnswer()
-        startTimer()
+        getGameTime()
+        setPauseButton()
         setUpObservers()
 
         return binding.root
@@ -83,7 +85,18 @@ class GameFragment : Fragment() {
         }
     }
 
-    private fun startTimer() {
+
+    private fun setPauseButton() {
+        binding.gamePauseButton.setOnClickListener {
+            viewModel.cancelGame()
+            GamePauseDialogFragment().show(
+                childFragmentManager,
+                Constants.GAME_PAUSE_TAG
+            )
+        }
+    }
+
+    private fun getGameTime() {
         viewModel.getTime()
     }
 
@@ -94,32 +107,53 @@ class GameFragment : Fragment() {
 
         viewModel.gameTime.observe(viewLifecycleOwner) { gameTime ->
             if (gameTime != null) {
-                val timer = object : CountDownTimer(
-                    Constants.ONE_MINUTE * gameTime,
-                    Constants.ONE_SECOND
-                ) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        val secondsLeft =
-                            (millisUntilFinished / Constants.ONE_SECOND.toDouble()).roundToInt()
-                        binding.gameTimer.text = secondsLeft.toString()
-                    }
-
-                    override fun onFinish() {
-                        if (findNavController().currentDestination?.id == R.id.gameFragment) {
-                            viewModel.addWordToList(Word(binding.gameWordText.text.toString(), false))
-                            findNavController().navigate(
-                                GameFragmentDirections.actionGameFragmentToFinishGameFragment(
-                                    viewModel.getWordsList().toTypedArray()
-                                )
-                            )
-                            viewModel.clearWordsList()
-                        }
-                    }
-
-                }
-                timer.start()
+                viewModel.setTimeRemaining(Constants.ONE_MINUTE * gameTime)
+                viewModel.startGame()
             }
         }
+
+        viewModel.isGameActive.observe(viewLifecycleOwner) { isGameActive ->
+            if (isGameActive != null) {
+                if (isGameActive) {
+                    startTimer()
+                } else {
+                    timer.cancel()
+                }
+            }
+        }
+    }
+
+    private fun startTimer() {
+        timer = object : CountDownTimer(
+            viewModel.getTimeRemaining(),
+            Constants.ONE_SECOND
+        ) {
+            override fun onTick(millisUntilFinished: Long) {
+                viewModel.setTimeRemaining(millisUntilFinished)
+                val secondsLeft =
+                    (millisUntilFinished / Constants.ONE_SECOND.toDouble()).roundToInt()
+                binding.gameTimer.text = secondsLeft.toString()
+            }
+
+            override fun onFinish() {
+                if (findNavController().currentDestination?.id == R.id.gameFragment) {
+                    viewModel.addWordToList(
+                        Word(
+                            binding.gameWordText.text.toString(),
+                            false
+                        )
+                    )
+                    findNavController().navigate(
+                        GameFragmentDirections.actionGameFragmentToFinishGameFragment(
+                            viewModel.getWordsList().toTypedArray()
+                        )
+                    )
+                    viewModel.clearWordsList()
+                }
+            }
+
+        }
+        timer.start()
     }
 
 }

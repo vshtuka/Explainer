@@ -38,5 +38,6 @@
     <string name="please_choose_dictionary">Please choose dictionary</string>
     <string name="please_add_team">Please add at least one team</string>
     <string name="please_choose_team">Please choose team</string>
+    <string name="pause">Pause</string>
 
 </resources>
