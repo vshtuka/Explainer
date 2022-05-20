@@ -36,8 +36,8 @@ class GameFragment : Fragment() {
         setWordCard()
         setTrueAnswer()
         setFalseAnswer()
-        getGameTime()
         setPauseButton()
+        startGame()
         setUpObservers()
 
         return binding.root
@@ -96,20 +96,15 @@ class GameFragment : Fragment() {
         }
     }
 
-    private fun getGameTime() {
-        viewModel.getTime()
+    private fun startGame() {
+        val gameTime = viewModel.getTime()
+        viewModel.setTimeRemaining(Constants.ONE_MINUTE * gameTime)
+        viewModel.startGame()
     }
 
     private fun setUpObservers() {
         viewModel.teamName.observe(viewLifecycleOwner) { teamName ->
             binding.gameToolbar.title = teamName
-        }
-
-        viewModel.gameTime.observe(viewLifecycleOwner) { gameTime ->
-            if (gameTime != null) {
-                viewModel.setTimeRemaining(Constants.ONE_MINUTE * gameTime)
-                viewModel.startGame()
-            }
         }
 
         viewModel.isGameActive.observe(viewLifecycleOwner) { isGameActive ->
@@ -124,8 +119,9 @@ class GameFragment : Fragment() {
     }
 
     private fun startTimer() {
+        val timeRemaining = viewModel.getTimeRemaining()
         timer = object : CountDownTimer(
-            viewModel.getTimeRemaining(),
+            timeRemaining,
             Constants.ONE_SECOND
         ) {
             override fun onTick(millisUntilFinished: Long) {
@@ -148,12 +144,12 @@ class GameFragment : Fragment() {
                             viewModel.getWordsList().toTypedArray()
                         )
                     )
+                    viewModel.finishGame()
                     viewModel.clearWordsList()
                 }
             }
 
-        }
-        timer.start()
+        }.start()
     }
 
 }
