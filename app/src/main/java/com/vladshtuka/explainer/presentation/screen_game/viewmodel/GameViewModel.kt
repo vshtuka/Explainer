@@ -25,10 +25,6 @@ class GameViewModel @Inject constructor(
     val teamName: LiveData<String?>
         get() = _teamName
 
-    private val _gameTime = MutableLiveData<Int?>()
-    val gameTime: LiveData<Int?>
-        get() = _gameTime
-
     private val _isGameActive = MutableLiveData<Boolean?>()
     val isGameActive: LiveData<Boolean?>
         get() = _isGameActive
@@ -66,10 +62,8 @@ class GameViewModel @Inject constructor(
         wordsList.clear()
     }
 
-    fun getTime() {
-        viewModelScope.launch {
-            _gameTime.postValue(timeUseCases.getTimeUseCase())
-        }
+    fun getTime(): Int {
+        return timeUseCases.getTimeUseCase()
     }
 
     fun startGame() {
@@ -78,6 +72,10 @@ class GameViewModel @Inject constructor(
 
     fun cancelGame() {
         _isGameActive.postValue(false)
+    }
+
+    fun finishGame() {
+        _isGameActive.postValue(null)
     }
 
     fun setTimeRemaining(millisUntilFinished: Long) {

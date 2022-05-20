@@ -10,7 +10,7 @@ class TimeRepositoryImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : TimeRepository {
 
-    override suspend fun getTime(): Int {
+    override fun getTime(): Int {
         return sharedPreferences.getInt(Constants.TIME_KEY, 1)
     }
 
