@@ -19,6 +19,10 @@ class FinishGameViewModel @Inject constructor(
     val teamName: LiveData<String?>
         get() = _teamName
 
+    private val _gamePoints = MutableLiveData<Int?>()
+    val gamePoints: LiveData<Int?>
+        get() = _gamePoints
+
     var score = 0
 
     fun getTeamName() {
@@ -54,23 +58,18 @@ class FinishGameViewModel @Inject constructor(
                 }
             }
             this.score = score
+            _gamePoints.postValue(score)
         }
-    }
-
-    fun addOnePoint() {
-        score++
-    }
-
-    fun subtractOnePoint() {
-        score--
     }
 
     fun addTwoPoints() {
         score += 2
+        _gamePoints.postValue(score)
     }
 
     fun subtractTwoPoints() {
         score -= 2
+        _gamePoints.postValue(score)
     }
 
 }
