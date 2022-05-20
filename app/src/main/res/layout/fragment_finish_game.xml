@@ -21,6 +21,20 @@
             app:navigationIcon="@drawable/back_icon"
             app:titleTextColor="@color/white" />
 
+        <TextView
+            android:id="@+id/finish_game_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_timer"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/finish_game_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/finish_game_recycler_view"
             android:layout_width="0dp"

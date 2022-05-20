@@ -114,6 +114,10 @@ class FinishGameFragment : Fragment() {
         viewModel.teamName.observe(viewLifecycleOwner) { teamName ->
             binding.finishGameToolbar.title = teamName
         }
+
+        viewModel.gamePoints.observe(viewLifecycleOwner) { gamePoints ->
+            binding.finishGamePoints.text = gamePoints.toString()
+        }
     }
 
 }
