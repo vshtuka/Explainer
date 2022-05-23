@@ -1,5 +1,6 @@
 package com.vladshtuka.explainer.presentation.screen_game.ui
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -21,6 +22,8 @@ class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentGameBinding
     private lateinit var timer: CountDownTimer
+    private lateinit var trueSound: MediaPlayer
+    private lateinit var falseSound: MediaPlayer
     private val viewModel: GameViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -33,6 +36,7 @@ class GameFragment : Fragment() {
         )
         setNavigationButton()
         handleBackPressButton()
+        createMediaPlayers()
         setWordCard()
         setTrueAnswer()
         setFalseAnswer()
@@ -41,6 +45,11 @@ class GameFragment : Fragment() {
         setUpObservers()
 
         return binding.root
+    }
+
+    private fun createMediaPlayers() {
+        trueSound = MediaPlayer.create(requireContext(), R.raw.true_sound)
+        falseSound = MediaPlayer.create(requireContext(), R.raw.false_sound)
     }
 
     private fun setNavigationButton() {
@@ -69,6 +78,7 @@ class GameFragment : Fragment() {
 
     private fun setTrueAnswer() {
         binding.gameTrueAnswerLayout.setOnClickListener {
+            trueSound.start()
             val trueAnswerCount = binding.gameTrueAnswerCount.text.toString().toInt() + 1
             binding.gameTrueAnswerCount.text = trueAnswerCount.toString()
             viewModel.addWordToList(Word(binding.gameWordText.text.toString(), true))
@@ -78,6 +88,7 @@ class GameFragment : Fragment() {
 
     private fun setFalseAnswer() {
         binding.gameFalseAnswerLayout.setOnClickListener {
+            falseSound.start()
             val falseAnswerCount = binding.gameFalseAnswerCount.text.toString().toInt() + 1
             binding.gameFalseAnswerCount.text = falseAnswerCount.toString()
             viewModel.addWordToList(Word(binding.gameWordText.text.toString(), false))
@@ -150,6 +161,14 @@ class GameFragment : Fragment() {
             }
 
         }.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        trueSound.stop()
+        falseSound.stop()
+        trueSound.release()
+        falseSound.release()
     }
 
 }
