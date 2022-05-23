@@ -1,5 +1,6 @@
 package com.vladshtuka.explainer.presentation.screen_finish_game.ui
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import com.vladshtuka.explainer.presentation.screen_game.ui.GameToHomeDialogFrag
 class FinishGameFragment : Fragment() {
 
     private lateinit var binding: FragmentFinishGameBinding
+    private lateinit var finishSound: MediaPlayer
     private val viewModel: FinishGameViewModel by activityViewModels()
     private lateinit var wordAdapter: WordAdapter
 
@@ -37,12 +39,18 @@ class FinishGameFragment : Fragment() {
         val words = FinishGameFragmentArgs.fromBundle(requireArguments()).wordsList?.toList()
         setNavigationButton()
         handleBackPressButton()
+        startFinishSoundMediaPlayer()
         initRecyclerView(words)
         initScore(words)
         setFinishGameButton()
         setUpObservers()
 
         return binding.root
+    }
+
+    private fun startFinishSoundMediaPlayer() {
+        finishSound = MediaPlayer.create(requireContext(), R.raw.finish_round_sound)
+        finishSound.start()
     }
 
     private fun initScore(words: List<Word>?) {
@@ -82,8 +90,8 @@ class FinishGameFragment : Fragment() {
                 }
             }
         }, AnswerFalseListener { word, answerFalse, answerTrue ->
-            if(word != null) {
-                if(word.isAnswerTrue) {
+            if (word != null) {
+                if (word.isAnswerTrue) {
                     answerFalse!!.setImageResource(R.drawable.cancel)
                     answerTrue!!.setImageResource(R.drawable.check_circle_outline)
                     viewModel.subtractTwoPoints()
@@ -118,6 +126,12 @@ class FinishGameFragment : Fragment() {
         viewModel.gamePoints.observe(viewLifecycleOwner) { gamePoints ->
             binding.finishGamePoints.text = gamePoints.toString()
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        finishSound.stop()
+        finishSound.release()
     }
 
 }
