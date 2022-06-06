@@ -97,7 +97,10 @@ object AppModule {
             removeActiveTeamUseCase = RemoveActiveTeamUseCase(repository),
             isTeamChosenUseCase = IsTeamChosenUseCase(repository),
             updateTeamScoreUseCase = UpdateTeamScoreUseCase(repository),
-            isTeamExistUseCase = IsTeamExistUseCase(repository)
+            isTeamExistUseCase = IsTeamExistUseCase(repository),
+            getGameCreatedStateUseCase = GetGameCreatedStateUseCase(repository),
+            setGameDeletedUseCase = SetGameDeletedUseCase(repository),
+            setGameCreatedUseCase = SetGameCreatedUseCase(repository)
         )
     }
 

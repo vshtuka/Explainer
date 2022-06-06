@@ -21,4 +21,5 @@ object Constants {
     const val ONE_MINUTE = 60000L
     const val ONE_SECOND = 1000L
     const val DICTIONARIES_COUNT = 2
+    const val GAME_STATE = "gameState"
 }

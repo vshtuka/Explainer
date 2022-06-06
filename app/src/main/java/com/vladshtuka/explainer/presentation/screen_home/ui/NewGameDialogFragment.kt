@@ -35,6 +35,7 @@ class NewGameDialogFragment : DialogFragment() {
         viewModel.removeTeams()
         viewModel.removeActiveTeam()
         viewModel.setDefaultTime()
+        viewModel.setGameDeleted()
     }
 
 }

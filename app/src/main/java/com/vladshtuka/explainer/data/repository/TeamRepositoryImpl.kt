@@ -56,4 +56,15 @@ class TeamRepositoryImpl @Inject constructor(
         teamDao.updateTeamScore(score, id)
     }
 
+    override suspend fun getGameCreatedState(): Boolean {
+        return sharedPreferences.getBoolean(Constants.GAME_STATE, false)
+    }
+
+    override suspend fun setGameCreated() {
+        sharedPreferences.edit().putBoolean(Constants.GAME_STATE, true).apply()
+    }
+
+    override suspend fun setGameDeleted() {
+        sharedPreferences.edit().putBoolean(Constants.GAME_STATE, false).apply()
+    }
 }
