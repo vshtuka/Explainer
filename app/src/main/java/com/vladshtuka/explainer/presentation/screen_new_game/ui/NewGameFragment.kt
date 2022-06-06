@@ -105,6 +105,7 @@ class NewGameFragment : Fragment() {
     private fun setStartGameButton() {
         binding.newGameStartGameButton.setOnClickListener {
             if (viewModel.isDictionaryChosen() && viewModel.isTeamAdded()) {
+                viewModel.setGameCreated()
                 this.findNavController()
                     .navigate(NewGameFragmentDirections.actionNewGameFragmentToStartGameFragment())
             } else if (!viewModel.isDictionaryChosen()) {

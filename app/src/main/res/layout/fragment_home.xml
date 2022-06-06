@@ -37,6 +37,7 @@
             android:backgroundTint="@color/emerald"
             android:text="@string/continue_game"
             android:textColor="@color/white"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/home_page_new_game_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

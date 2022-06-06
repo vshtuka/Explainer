@@ -1,5 +1,7 @@
 package com.vladshtuka.explainer.presentation.screen_home.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vladshtuka.explainer.common.Constants
@@ -16,6 +18,10 @@ class HomeViewModel @Inject constructor(
     private val teamsUseCases: TeamUseCases,
     private val timeUseCases: TimeUseCases
 ) : ViewModel() {
+
+    private val _isGameCreated = MutableLiveData<Boolean?>()
+    val isGameCreated: LiveData<Boolean?>
+        get() = _isGameCreated
 
     fun removeDictionary() {
         viewModelScope.launch {
@@ -38,6 +44,18 @@ class HomeViewModel @Inject constructor(
     fun setDefaultTime() {
         viewModelScope.launch {
             timeUseCases.setTimeUseCases(Constants.MIN_ROUND_TIME)
+        }
+    }
+
+    fun setGameDeleted() {
+        viewModelScope.launch {
+            teamsUseCases.setGameDeletedUseCase()
+        }
+    }
+
+    fun getGameCreatedState() {
+        viewModelScope.launch {
+            _isGameCreated.postValue(teamsUseCases.getGameCreatedStateUseCase())
         }
     }
 

@@ -1,6 +1,7 @@
 package com.vladshtuka.explainer.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.vladshtuka.explainer.common.Constants
 import com.vladshtuka.explainer.domain.model.Team
 
 interface TeamRepository {
@@ -24,5 +25,11 @@ interface TeamRepository {
     suspend fun removeTeams()
 
     suspend fun updateTeamScore(score: Int, id: Int)
+
+    suspend fun getGameCreatedState(): Boolean
+
+    suspend fun setGameCreated()
+
+    suspend fun setGameDeleted()
 
 }

@@ -109,4 +109,10 @@ class NewGameViewModel @Inject constructor(
     fun isTeamAdded(): Boolean {
         return teamsList.value?.isNotEmpty() ?: false
     }
+
+    fun setGameCreated() {
+        viewModelScope.launch {
+            teamUseCases.setGameCreatedUseCase()
+        }
+    }
 }
