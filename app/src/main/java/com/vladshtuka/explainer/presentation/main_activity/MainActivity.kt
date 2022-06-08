@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity() {
     private fun setBackgroundMusic() {
         mediaPlayer = MediaPlayer.create(this, R.raw.background_music)
         mediaPlayer.isLooping = true
+        mediaPlayer.start()
     }
 
     override fun onStart() {
         super.onStart()
         setBackgroundMusic()
-        mediaPlayer.start()
     }
 
     override fun onStop() {

@@ -36,7 +36,6 @@ class GameFragment : Fragment() {
         )
         setNavigationButton()
         handleBackPressButton()
-        createMediaPlayers()
         setWordCard()
         setTrueAnswer()
         setFalseAnswer()
@@ -163,6 +162,11 @@ class GameFragment : Fragment() {
         }.start()
     }
 
+    override fun onStart() {
+        super.onStart()
+        createMediaPlayers()
+    }
+    
     override fun onStop() {
         super.onStop()
         trueSound.stop()
