@@ -2,12 +2,12 @@ package com.vladshtuka.explainer.presentation.screen_finish_game.ui
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,10 +16,9 @@ import com.vladshtuka.explainer.common.Constants
 import com.vladshtuka.explainer.databinding.FragmentFinishGameBinding
 import com.vladshtuka.explainer.domain.model.Word
 import com.vladshtuka.explainer.presentation.screen_finish_game.adapter.AnswerFalseListener
-import com.vladshtuka.explainer.presentation.screen_finish_game.adapter.WordAdapter
 import com.vladshtuka.explainer.presentation.screen_finish_game.adapter.AnswerTrueListener
+import com.vladshtuka.explainer.presentation.screen_finish_game.adapter.WordAdapter
 import com.vladshtuka.explainer.presentation.screen_finish_game.viewmodel.FinishGameViewModel
-import com.vladshtuka.explainer.presentation.screen_game.ui.GameToHomeDialogFragment
 
 class FinishGameFragment : Fragment() {
 
@@ -131,6 +130,10 @@ class FinishGameFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         finishSound.stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         finishSound.release()
     }
 
