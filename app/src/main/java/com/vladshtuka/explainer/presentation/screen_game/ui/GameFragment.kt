@@ -24,6 +24,7 @@ class GameFragment : Fragment() {
     private lateinit var timer: CountDownTimer
     private lateinit var trueSound: MediaPlayer
     private lateinit var falseSound: MediaPlayer
+    private lateinit var backgroundMusic: MediaPlayer
     private val viewModel: GameViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -49,6 +50,8 @@ class GameFragment : Fragment() {
     private fun createMediaPlayers() {
         trueSound = MediaPlayer.create(requireContext(), R.raw.true_sound)
         falseSound = MediaPlayer.create(requireContext(), R.raw.false_sound)
+        backgroundMusic = MediaPlayer.create(requireContext(), R.raw.background_music)
+        backgroundMusic.isLooping = true
     }
 
     private fun setNavigationButton() {
@@ -162,17 +165,27 @@ class GameFragment : Fragment() {
         }.start()
     }
 
+    private fun startBackgroundMusic() {
+        backgroundMusic.start()
+    }
+
     override fun onStart() {
         super.onStart()
         createMediaPlayers()
+        startBackgroundMusic()
     }
-    
+
     override fun onStop() {
         super.onStop()
         trueSound.stop()
         falseSound.stop()
-        trueSound.release()
-        falseSound.release()
+        backgroundMusic.stop()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        trueSound.release()
+        falseSound.release()
+        backgroundMusic.release()
+    }
 }
