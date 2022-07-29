@@ -12,7 +12,6 @@ import com.vladshtuka.explainer.domain.usecase.time.TimeUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -47,7 +46,18 @@ class GameViewModel @Inject constructor(
     }
 
     fun getRandomWord(): String {
-        return dictionary.words.random()
+        val randomWord = dictionary.words.random()
+        removeWordFromDictionary(randomWord)
+        if (dictionary.words.isEmpty()) {
+            viewModelScope.launch {
+                dictionary = dictionaryUseCases.getFullDictionaryUseCase()!!
+            }
+        }
+        return randomWord
+    }
+
+    private fun removeWordFromDictionary(randomWord: String) {
+        dictionary.words.remove(randomWord)
     }
 
     fun addWordToList(word: Word) {
@@ -76,6 +86,9 @@ class GameViewModel @Inject constructor(
 
     fun finishGame() {
         _isGameActive.postValue(null)
+        viewModelScope.launch {
+            dictionaryUseCases.setDictionaryUseCase(dictionary)
+        }
     }
 
     fun setTimeRemaining(millisUntilFinished: Long) {

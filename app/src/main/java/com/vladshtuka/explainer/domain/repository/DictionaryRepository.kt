@@ -10,6 +10,10 @@ interface DictionaryRepository {
 
     suspend fun setDictionary(dictionary: Dictionary?)
 
+    suspend fun getFullDictionary(): Dictionary?
+
+    suspend fun setFullDictionary(dictionary: Dictionary?)
+
     suspend fun removeDictionary()
 
     suspend fun getDictionaryName(): String

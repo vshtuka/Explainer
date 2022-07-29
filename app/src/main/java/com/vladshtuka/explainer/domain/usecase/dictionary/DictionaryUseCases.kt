@@ -6,5 +6,7 @@ data class DictionaryUseCases(
     val setDictionaryUseCase: SetDictionaryUseCase,
     val removeDictionaryUseCase: RemoveDictionaryUseCase,
     val getDictionaryNameUseCase: GetDictionaryNameUseCase,
-    val isDictionaryChosenUseCase: IsDictionaryChosenUseCase
+    val isDictionaryChosenUseCase: IsDictionaryChosenUseCase,
+    val getFullDictionaryUseCase: GetFullDictionaryUseCase,
+    val setFullDictionaryUseCase: SetFullDictionaryUseCase
     )
