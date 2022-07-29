@@ -62,6 +62,12 @@ class NewGameViewModel @Inject constructor(
         }
     }
 
+    fun setFullDictionary(dictionary: Dictionary?) {
+        viewModelScope.launch {
+            dictionaryUseCases.setFullDictionaryUseCase(dictionary)
+        }
+    }
+
     fun addTeam(team: Team) {
         viewModelScope.launch {
             if (teamUseCases.isTeamExistUseCase(team.name)) {

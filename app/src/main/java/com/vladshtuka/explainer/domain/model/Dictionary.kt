@@ -5,6 +5,6 @@ data class Dictionary(
     val name: String,
     val description: String,
     val language: String,
-    val words: List<String>,
+    val words: MutableList<String>,
     val wordsNumber: String
 )

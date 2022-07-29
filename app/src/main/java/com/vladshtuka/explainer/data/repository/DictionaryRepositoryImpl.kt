@@ -35,6 +35,16 @@ class DictionaryRepositoryImpl @Inject constructor(
         sharedPreferences.edit().putString(Constants.DICTIONARY_KEY, json).apply()
     }
 
+    override suspend fun getFullDictionary(): Dictionary? {
+        val json = sharedPreferences.getString(Constants.FULL_DICTIONARY_KEY, null)
+        return Gson().fromJson(json, Dictionary::class.java)
+    }
+
+    override suspend fun setFullDictionary(dictionary: Dictionary?) {
+        val json = Gson().toJson(dictionary)
+        sharedPreferences.edit().putString(Constants.FULL_DICTIONARY_KEY, json).apply()
+    }
+
     override suspend fun removeDictionary() {
         sharedPreferences.edit().remove(Constants.DICTIONARY_KEY).apply()
     }

@@ -48,6 +48,7 @@ class DictionaryEnFragment : Fragment() {
     private fun initRecyclerView() {
         dictionaryAdapter = DictionaryAdapter(DictionaryListener { dictionary ->
             viewModel.setDictionary(dictionary)
+            viewModel.setFullDictionary(dictionary)
             viewModel.getDictionaryName()
             val dialogFragment = requireParentFragment() as DialogFragment
             dialogFragment.dismiss()
