@@ -13,7 +13,7 @@
     <string name="dictionary_title">Словник</string>
     <string name="select_dictionary">Оберіть словник</string>
     <string name="team_title">Команди</string>
-    <string name="add_team">Додати</string>
+    <string name="add_team">Додати команду</string>
     <string name="team_name">Назва команди</string>
     <string name="settings">Налаштування</string>
     <string name="round_duration">Тривалість раунду</string>
