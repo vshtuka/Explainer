@@ -70,7 +70,7 @@ class NewGameViewModel @Inject constructor(
 
     fun addTeam(team: Team) {
         viewModelScope.launch {
-            if (teamUseCases.isTeamExistUseCase(team.name)) {
+            if (team.name.isNotEmpty() && teamUseCases.isTeamExistUseCase(team.name)) {
                 teamUseCases.addTeamUseCase(team)
             }
         }
@@ -109,7 +109,7 @@ class NewGameViewModel @Inject constructor(
     }
 
     fun isDictionaryChosen(): Boolean {
-       return dictionaryUseCases.isDictionaryChosenUseCase()
+        return dictionaryUseCases.isDictionaryChosenUseCase()
     }
 
     fun isTeamAdded(): Boolean {

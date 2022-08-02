@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
@@ -39,6 +40,7 @@ class NewGameFragment : Fragment() {
         handleBackPressButton()
         setDictionaryChoice()
         setTeamAddButton()
+        setAddTeamEditTextDoneButton()
         setGameTime()
         initTeamsRecyclerView()
         setStartGameButton()
@@ -72,11 +74,24 @@ class NewGameFragment : Fragment() {
 
     private fun setTeamAddButton() {
         binding.newGameAddTeamButton.setOnClickListener {
-            viewModel.addTeam(
-                Team(name = binding.newGameNewTeamEditText.text.toString())
-            )
-            binding.newGameNewTeamEditText.text.clear()
+            addTeam()
         }
+    }
+
+    private fun setAddTeamEditTextDoneButton() {
+        binding.newGameNewTeamEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                addTeam()
+            }
+            false
+        }
+    }
+
+    private fun addTeam() {
+        viewModel.addTeam(
+            Team(name = binding.newGameNewTeamEditText.text.toString())
+        )
+        binding.newGameNewTeamEditText.text.clear()
     }
 
     private fun setGameTime() {
