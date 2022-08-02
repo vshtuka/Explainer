@@ -23,4 +23,6 @@ object Constants {
     const val ONE_SECOND = 1000L
     const val DICTIONARIES_COUNT = 2
     const val GAME_STATE = "gameState"
+    const val SWIPE_THRESHOLD = 100
+    const val SWIPE_VELOCITY_THRESHOLD = 100
 }

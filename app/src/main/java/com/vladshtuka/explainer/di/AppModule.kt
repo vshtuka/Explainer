@@ -79,7 +79,9 @@ object AppModule {
             setDictionaryUseCase = SetDictionaryUseCase(repository),
             removeDictionaryUseCase = RemoveDictionaryUseCase(repository),
             getDictionaryNameUseCase = GetDictionaryNameUseCase(repository),
-            isDictionaryChosenUseCase = IsDictionaryChosenUseCase(repository)
+            isDictionaryChosenUseCase = IsDictionaryChosenUseCase(repository),
+            getFullDictionaryUseCase = GetFullDictionaryUseCase(repository),
+            setFullDictionaryUseCase = SetFullDictionaryUseCase(repository)
         )
     }
 
