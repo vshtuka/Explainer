@@ -38,8 +38,8 @@ class GameFragment : Fragment() {
         setNavigationButton()
         handleBackPressButton()
         setWordCard()
-        setTrueAnswer()
-        setFalseAnswer()
+        setClickAnswer()
+        setSwipeAnswer()
         setPauseButton()
         startGame()
         setUpObservers()
@@ -79,25 +79,42 @@ class GameFragment : Fragment() {
     }
 
     private fun setTrueAnswer() {
-        binding.gameTrueAnswerLayout.setOnClickListener {
-            trueSound.start()
-            val trueAnswerCount = binding.gameTrueAnswerCount.text.toString().toInt() + 1
-            binding.gameTrueAnswerCount.text = trueAnswerCount.toString()
-            viewModel.addWordToList(Word(binding.gameWordText.text.toString(), true))
-            binding.gameWordText.text = viewModel.getRandomWord()
-        }
+        trueSound.start()
+        val trueAnswerCount = binding.gameTrueAnswerCount.text.toString().toInt() + 1
+        binding.gameTrueAnswerCount.text = trueAnswerCount.toString()
+        viewModel.addWordToList(Word(binding.gameWordText.text.toString(), true))
+        binding.gameWordText.text = viewModel.getRandomWord()
+
     }
 
     private fun setFalseAnswer() {
-        binding.gameFalseAnswerLayout.setOnClickListener {
-            falseSound.start()
-            val falseAnswerCount = binding.gameFalseAnswerCount.text.toString().toInt() + 1
-            binding.gameFalseAnswerCount.text = falseAnswerCount.toString()
-            viewModel.addWordToList(Word(binding.gameWordText.text.toString(), false))
-            binding.gameWordText.text = viewModel.getRandomWord()
-        }
+        falseSound.start()
+        val falseAnswerCount = binding.gameFalseAnswerCount.text.toString().toInt() + 1
+        binding.gameFalseAnswerCount.text = falseAnswerCount.toString()
+        viewModel.addWordToList(Word(binding.gameWordText.text.toString(), false))
+        binding.gameWordText.text = viewModel.getRandomWord()
     }
 
+    private fun setSwipeAnswer() {
+        binding.gameWordCard.setOnTouchListener(object : OnSwipeTouchListener(requireContext()) {
+            override fun onSwipeTop() {
+                setTrueAnswer()
+            }
+
+            override fun onSwipeBottom() {
+                setFalseAnswer()
+            }
+        })
+    }
+
+    private fun setClickAnswer() {
+        binding.gameTrueAnswerLayout.setOnClickListener {
+            setTrueAnswer()
+        }
+        binding.gameFalseAnswerLayout.setOnClickListener {
+            setFalseAnswer()
+        }
+    }
 
     private fun setPauseButton() {
         binding.gamePauseButton.setOnClickListener {
