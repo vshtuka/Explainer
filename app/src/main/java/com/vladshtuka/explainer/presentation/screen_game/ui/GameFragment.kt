@@ -47,13 +47,6 @@ class GameFragment : Fragment() {
         return binding.root
     }
 
-    private fun createMediaPlayers() {
-        trueSound = MediaPlayer.create(requireContext(), R.raw.true_sound)
-        falseSound = MediaPlayer.create(requireContext(), R.raw.false_sound)
-        backgroundMusic = MediaPlayer.create(requireContext(), R.raw.background_music)
-        backgroundMusic.isLooping = true
-    }
-
     private fun setNavigationButton() {
         viewModel.getTeamName()
         binding.gameToolbar.setNavigationOnClickListener {
@@ -141,8 +134,12 @@ class GameFragment : Fragment() {
             if (isGameActive != null) {
                 if (isGameActive) {
                     startTimer()
+                    createMediaPlayers()
+                    backgroundMusic.start()
                 } else {
                     timer.cancel()
+                    stopMediaPlayers()
+                    backgroundMusic.stop()
                 }
             }
         }
@@ -182,27 +179,38 @@ class GameFragment : Fragment() {
         }.start()
     }
 
-    private fun startBackgroundMusic() {
-        backgroundMusic.start()
+
+    private fun createMediaPlayers() {
+        trueSound = MediaPlayer.create(requireContext(), R.raw.true_sound)
+        falseSound = MediaPlayer.create(requireContext(), R.raw.false_sound)
+        backgroundMusic = MediaPlayer.create(requireContext(), R.raw.background_music)
+        backgroundMusic.isLooping = true
     }
 
-    override fun onStart() {
-        super.onStart()
-        createMediaPlayers()
-        startBackgroundMusic()
-    }
-
-    override fun onStop() {
-        super.onStop()
+    private fun stopMediaPlayers() {
         trueSound.stop()
         falseSound.stop()
         backgroundMusic.stop()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun releaseMediaPlayers() {
         trueSound.release()
         falseSound.release()
         backgroundMusic.release()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.startGame()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.cancelGame()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        releaseMediaPlayers()
     }
 }
